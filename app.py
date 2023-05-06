@@ -209,5 +209,5 @@ if __name__ == "__main__":
         if port.isnumeric():
             port = int(port)
 
-    app.run(debug=True, port=port)  # listen on localhost ONLY
-#    app.run(debug=True, host='0.0.0.0')    # listen on all public IPs
+    #app.run(debug=True, port=port)  # listen on localhost ONLY
+    app.run(debug=True, host='0.0.0.0')    # listen on all public IPs
