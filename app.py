@@ -202,12 +202,31 @@ def crypto_text_dec():
 
     return render_template('crypto.html', **context)
 
-if __name__ == "__main__":
-    port = 5000
-    if len(sys.argv) > 1:
-        port = sys.argv[1]
-        if port.isnumeric():
-            port = int(port)
+@app.route('/visual')
+def visual():
+   df = pd.DataFrame({
+      'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 
+      'Bananas'],
+      'Amount': [4, 1, 2, 2, 4, 5],
+      'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
+   })
+   fig = px.bar(df, x='Fruit', y='Amount', color='City', 
+      barmode='group')
+   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+   return render_template('visual.html', graphJSON=graphJSON)
 
-    #app.run(debug=True, port=port)  # listen on localhost ONLY
-    app.run(debug=True, host='0.0.0.0')    # listen on all public IPs
+
+if __name__ == '__main__':
+ 
+    # run() method of Flask class runs the application
+    # on the local development server.
+    app.run()
+# if __name__ == "__main__":
+#     port = 5000
+#     if len(sys.argv) > 1:
+#         port = sys.argv[1]
+#         if port.isnumeric():
+#             port = int(port)
+
+#     app.run(debug=True, port=port)  # listen on localhost ONLY
+#    app.run(debug=True, host='0.0.0.0')    # listen on all public IPs
