@@ -3,7 +3,7 @@
 
 import time
 import random
-import library.Modulo
+import library.Modulo as Modulo
 
 
 def is_primary_sieve(n):

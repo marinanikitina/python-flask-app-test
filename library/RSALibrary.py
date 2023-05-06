@@ -2,13 +2,13 @@
 # encoding: utf-8
 
 import random
-import library.Euclidean
-import library.PrimalityTests
-import library.Modulo
-import library.ExtendedEuclidean
+import library.Euclidean as Euclidean
+import library.PrimalityTests as PrimalityTests
+import library.Modulo as Modulo
+import library.ExtendedEuclidean as ExtendedEuclidean
 import math
-import library.StringLibrary
-import library.TimeLibrary
+import library.StringLibrary as StringLibrary
+import library.TimeLibrary as TimeLibrary
 
 
 # following miller-rabin test

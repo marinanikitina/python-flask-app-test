@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
-from flask import Flask, render_template, request
+import json
 import sys
+
 import pandas as pd
 import json
 import plotly
 import plotly.express as px
+from flask import Flask, render_template, request
+
+from library.TimeLibrary import timed_function_beautified
 
 sys.path.append('/library')
 import library.RSALibrary as RSALibrary
@@ -202,25 +206,25 @@ def crypto_text_dec():
 
     return render_template('crypto.html', **context)
 
+
 @app.route('/visual')
 def visual():
-   df = pd.DataFrame({
-      'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges', 
-      'Bananas'],
-      'Amount': [4, 1, 2, 2, 4, 5],
-      'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
-   })
-   fig = px.bar(df, x='Fruit', y='Amount', color='City', 
-      barmode='group')
-   graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-   return render_template('visual.html', graphJSON=graphJSON)
+    df = pd.DataFrame({
+        'Fruit': ['Apples', 'Oranges', 'Bananas', 'Apples', 'Oranges',
+                  'Bananas'],
+        'Amount': [4, 1, 2, 2, 4, 5],
+        'City': ['SF', 'SF', 'SF', 'Montreal', 'Montreal', 'Montreal']
+    })
+    fig = px.bar(df, x='Fruit', y='Amount', color='City',
+                 barmode='group')
+    graph_json = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('visual.html', graphJSON=graph_json)
 
 
 if __name__ == '__main__':
- 
     # run() method of Flask class runs the application
     # on the local development server.
-    app.run()
+    app.run(debug=True)
 # if __name__ == "__main__":
 #     port = 5000
 #     if len(sys.argv) > 1:
