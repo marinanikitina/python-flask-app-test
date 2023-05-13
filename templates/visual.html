@@ -1,17 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
- <body>
-  <h1>Hello Plotly (but not Dash)</h1>
-  <div id='chart' class='chart'”></div>
-</body>
-<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-<script type='text/javascript'>
-  var graphs = {{graphJSON | safe}};
-  Plotly.plot('chart',graphs,{});
-</script>
-<br/>
-<br/>
-<br/>
+<head>
+    <title>Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div>
+        {{ fig_enc|safe }}
+    </div>
+    <div>
+        {{ fig_dec|safe }}
+    </div>
+    <div>
+        {{ fig_keygen|safe }}
+    </div>
+<br />
+<br />
+<br />
 <div>
     <a href="{{ url_for('index') }}">Back to Home Page</a>
 </div>
