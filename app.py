@@ -230,16 +230,16 @@ def visual():
     })
 
     fig_enc = px.line(df_enc, x='Size of Keys (bits)', y=df_enc.columns[1:], title='Encryption Time',
-                  labels={'value': 'Time (ms)'})
-    fig_enc.update_layout(xaxis_range=[0, 1200])
+                      labels={'value': 'Time (ms)'})
+    fig_enc.update_layout(xaxis_range=[0, 1200], yaxis_range=[0, 1000])
     fig_enc = fig_enc.to_html(full_html=False)
 
-    multipower_dectime = [0.999212027, 1.999616623, 3.000259399, 7.999897003, 19.00300932]
-    multiprime_dectime = [1.000165939, 2.001047134, 4.002094269, 9.004211903, 23.99983406]
-    crt_dectime = [16.00027084, 25.00867844, 40.99860191, 101.9999981, 276.004075]
-    rsa_dectime = [17.99845695, 30.00555038, 56.01243973, 143.0208683, 375.0276566]
-    char_dectime = [20.00370026, 34.01999474, 66.02554321, 159.0491772, 421.0968018]
-    dependent_dectime = [46.01054192, 83.01558495, 165.0130749, 421.0400581, 1206.142283]
+    multipower_dectime = [79.00309563, 622.0452785, 3644.270182, 20661.53336, 104141.7747]
+    multiprime_dectime = [59.00239944, 3774.280071, 83714.70499, 381739.8643, 999999]
+    crt_dectime = [87.00656891, 319.0245628, 1334.099293, 7375.546932, 47142.4973]
+    rsa_dectime = [142.0109272, 635.0471973, 3539.262056, 23362.73408, 165806.3066]
+    char_dectime = [214.0161991, 962.0711803, 5459.403515, 34631.56891, 223170.254]
+    dependent_dectime = [414.0496254, 1490.129471, 7913.590431, 51314.013, 350634.3005]
 
     df_dec = pd.DataFrame({
         'Size of Keys (bits)': x,
@@ -252,7 +252,7 @@ def visual():
     })
     fig_dec = px.line(df_dec, x='Size of Keys (bits)', y=df_dec.columns[1:], title='Decryption Time',
                       labels={'value': 'Time (ms)'})
-    fig_dec.update_layout(xaxis_range=[0, 1200])
+    fig_dec.update_layout(xaxis_range=[0, 1200], yaxis_range=[0, 150000])
     fig_dec = fig_dec.to_html(full_html=False)
 
     multipower_keygen = [15.0012, 21.40101, 65.8048, 171.227, 831.6657]
@@ -274,12 +274,11 @@ def visual():
 
     fig_keygen = px.line(df_keygen, x='Size of Keys (bits)', y=df_keygen.columns[1:], title='Key Generation Time',
                          labels={'value': 'Time (ms)'})
-    fig_keygen.update_layout(xaxis_range=[0, 1200])
+    fig_keygen.update_layout(xaxis_range=[0, 1200], yaxis_range=[0, 1000])
 
     fig_keygen = fig_keygen.to_html(full_html=False)
 
     return render_template('visual.html', fig_enc=fig_enc, fig_dec=fig_dec, fig_keygen=fig_keygen)
-
 
 
 if __name__ == '__main__':
